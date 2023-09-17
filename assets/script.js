@@ -42,15 +42,6 @@ var questions = [
     },
 ]
 
-function startQuiz() {
-    if (questionCounterEl && totalQuestionsEl && choicesEl && scoreEl){
-        questionCounterEl.style.display = "none"
-        totalQuestionsEl.style.display = "none"
-        choicesEl.style.display = "none"
-        scoreEl.style.display = "none"
-    }
-}
-
 function loadQuestion() {
     var currentQuestion = questions[currentQuestionIndex]
     questionEl.textContent = currentQuestion.title
@@ -60,7 +51,7 @@ function loadQuestion() {
         var choice = currentQuestion.choices[i]
         var choiceItem = document.createElement('button')
         choiceItem.textContent = choice
-        choiceItem.style.display = 'block';
+        choiceItem.style.display = 'block'
         choiceItem.addEventListener('click', function () {
             checkAnswer(this.textContent)
         })
@@ -99,7 +90,15 @@ function endQuiz() {
         questionCounterEl.style.display = "none"
         resultEl.style.display = "none"
     }
-
+    document.getElementById('high-score-button').style.display = "block"
 }
 
 loadQuestion()
+
+function displayHighScores() {
+    document.getElementById('high-scores').style.display = 'block'
+}
+
+document.getElementById('submit-score').addEventListener('click', function () {
+    const initials = document.getElementById('initials').value
+})
