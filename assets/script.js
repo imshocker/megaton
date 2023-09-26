@@ -127,20 +127,6 @@ function endQuiz() {
 
 loadQuestion()
 
-//Displays High-scores on the right side of the High-score page
-function displayHighScores() {
-    var highScores = JSON.parse(localStorage.getItem("highScores")) || []
-
-    var highScoresList = document.getElementById("high-scores-list")
-    highScoresList.innerHTML = "" // Clear the previous list
-
-    highScores.forEach((entry, index) => {
-        const listItem = document.createElement("li")
-        listItem.textContent = `${entry.initials}: ${entry.score}`
-        highScoresList.appendChild(listItem)
-    })
-}
-
 //Saves High-score to localStorage
 function saveHighScore(initials, score) {
     var highScores = JSON.parse(localStorage.getItem('highScores')) || []
@@ -151,6 +137,21 @@ function saveHighScore(initials, score) {
     })
     localStorage.setItem('highScores', JSON.stringify(highScores))
 }
+
+//Displays High-scores on the right side of the High-score page
+function displayHighScores() {
+    var highScoresList = document.getElementById("high-scores-list")
+    highScoresList.innerHTML = "" // Clear the previous list
+
+    highScores.forEach((entry, index) => {
+        const listItem = document.createElement("li")
+        listItem.textContent = `${entry.initials}: ${entry.score}`
+        highScoresList.appendChild(listItem)
+    })
+
+    var highScores = JSON.parse(localStorage.getItem("highScores"))
+}
+
 
 // Event listener for starting the quiz
 document.getElementById('start-button').addEventListener('click', startQuiz)
